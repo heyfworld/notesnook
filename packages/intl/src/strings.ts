@@ -2703,5 +2703,9 @@ Continue without attachments?`,
   copyLogs: () => t`Copy logs`,
   permissionRequiredToSaveQRCode: () =>
     t`Permission required to save QR-Code to Gallery`,
-  expiryDateRemoved: () => t`Expiry date removed`
+  expiryDateRemoved: () => t`Expiry date removed`,
+  colorNotePasswordFor: (filename: string) =>
+    t`Colornote password for ${filename}`,
+  colorNotPasswordForDesc: () =>
+    t`The password for decrypting the Colornote backup file.`
 };
