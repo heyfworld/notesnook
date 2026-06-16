@@ -87,17 +87,37 @@ const PDFPreview = React.lazy(() => import("../pdf-preview"));
 const autoSaveToast = { show: true, hide: () => {} };
 
 export async function saveContent(
-  noteId: string,
-  ignoreEdit: boolean,
-  content: string
+  content: string,
+  session: EditorSession,
+  ignoreEdit = false
 ) {
+  const noteId = session && "note" in session ? session.note.id : null;
+  if (noteId && "note" in session) {
+    const dbNote = await db.notes.all
+      .fields(["notes.id", "notes.dateEdited"])
+      .find((e) => e("notes.id", "==", noteId));
+    if (dbNote && dbNote.dateEdited !== session.note.dateEdited) {
+      const result = await ConfirmDialog.show({
+        title: strings.conflictDetected(),
+        message: strings.conflictDetectedDesc(),
+        positiveButtonText: strings.overwrite(),
+        negativeButtonText: strings.cancel()
+      });
+      if (!result) {
+        showToast("error", strings.saveConflictError());
+        useEditorStore.getState().setSaveState(session.id, SaveState.NotSaved);
+        return;
+      }
+    }
+  }
+
   logger.debug("saving content", {
-    noteId,
+    noteId: "note" in session ? session.note.id : null,
     ignoreEdit,
     length: content.length
   });
   await Promise.race([
-    useEditorStore.getState().saveSessionContent(noteId, ignoreEdit, {
+    useEditorStore.getState().saveSessionContent(session.id, ignoreEdit, {
       type: "tiptap",
       data: content
     }),
@@ -411,7 +431,7 @@ function EditorView({
             id: session.id,
             length: data.length
           });
-          deferredSave(session.id, session.id, ignoreEdit, data);
+          deferredSave(session.id, data, session, ignoreEdit);
         }}
         options={{
           readonly: session?.type === "readonly" || session?.type === "deleted",

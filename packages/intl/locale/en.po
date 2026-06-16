@@ -1886,6 +1886,10 @@ msgstr "Confirm pin"
 msgid "Confirmation email sent"
 msgstr "Confirmation email sent"
 
+#: src/strings.ts:2794
+msgid "Conflict detected"
+msgstr "Conflict detected"
+
 #: src/strings.ts:2092
 msgid "Congratulations!"
 msgstr "Congratulations!"
@@ -1986,6 +1990,10 @@ msgstr "Could not convert note to {format}."
 #: src/strings.ts:769
 msgid "Could not create backup"
 msgstr "Could not create backup"
+
+#: src/strings.ts:2798
+msgid "Could not save due to conflict."
+msgstr "Could not save due to conflict."
 
 #: src/strings.ts:559
 msgid "Could not unlock"
@@ -4817,6 +4825,10 @@ msgstr "Other"
 #: src/strings.ts:2358
 msgid "Outline list"
 msgstr "Outline list"
+
+#: src/strings.ts:2797
+msgid "Overwrite"
+msgstr "Overwrite"
 
 #: src/strings.ts:2361
 msgid "Paragraph"

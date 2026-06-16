@@ -340,7 +340,10 @@ class EditorStore extends BaseStore<EditorStore> {
           )
             openSession(session.note.id, { force: true, silent: true });
           // update the note in all sessions
-          else if (item.type === "note") {
+          else if (
+            appStore.get().isRealtimeSyncEnabled &&
+            item.type === "note"
+          ) {
             updateSession(
               session.id,
               [session.type],

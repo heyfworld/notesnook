@@ -1875,6 +1875,10 @@ msgstr ""
 msgid "Confirmation email sent"
 msgstr ""
 
+#: src/strings.ts:2794
+msgid "Conflict detected"
+msgstr ""
+
 #: src/strings.ts:2092
 msgid "Congratulations!"
 msgstr ""
@@ -1974,6 +1978,10 @@ msgstr ""
 
 #: src/strings.ts:769
 msgid "Could not create backup"
+msgstr ""
+
+#: src/strings.ts:2798
+msgid "Could not save due to conflict."
 msgstr ""
 
 #: src/strings.ts:559
@@ -4790,6 +4798,10 @@ msgstr ""
 
 #: src/strings.ts:2358
 msgid "Outline list"
+msgstr ""
+
+#: src/strings.ts:2797
+msgid "Overwrite"
 msgstr ""
 
 #: src/strings.ts:2361
